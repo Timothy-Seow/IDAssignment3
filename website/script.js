@@ -5,5 +5,5 @@ async function getData() {
     cardList = data;
     console.log(data);
 }
-
+//test
 getData();
