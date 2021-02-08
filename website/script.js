@@ -1,9 +1,31 @@
-async function getData() {
+var cardList;
+
+function getData() {
     const url = 'https://api.hearthstonejson.com/v1/latest/enUS/cards.json';
-    const response = await fetch(url);
-    const data = await response.json();
-    cardList = data;
-    console.log(data);
+    fetch(url)
+    .then(res => res.json())
+    .then(function(data){
+        cardList = data;
+        displayCard();
+    })
 }
-//test
+
+function displayCard(){
+    $.each(cardList, function(index, value){
+        //console.log(value.name);
+    })
+  
+    //console.log(cardList.length)
+
+}
 getData();
+
+function test(x)
+{
+
+    x.forEach(card => {
+        console.log(card.name);
+    });
+}
+
+test(cardList);
