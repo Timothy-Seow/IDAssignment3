@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ID Assignment 3</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/quiz.css" type="text/css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -33,13 +33,41 @@
         </div>
       </div>
   </nav>
-  <div class="main-content">
-    <div class="heading">
-      Blizzard Entertainment
+  <div class="quiz-content">
+    <div class="quiz-header">Hearthstone Quiz</div>
+
+    <div class="about-quiz">
+        This is a Hearthstone quiz to test your game knowledge! A card and question will be randomly chosen and you are required to answer. After 5 rounds, the result will be determined based on the number of correct answers given!
+        You may choose to save the result to your account after loggin in! 
     </div>
-    <div class="about-us">
-      At Blizzard Entertainment, we pour our hearts and souls into everything we create. We embrace our core values every day so that we can continue creating epic entertainment experiences for all our players. It doesn’t matter who you are or where you’re located—if you’re a member of our evolving and vibrant community, working with us at one of our offices around the globe, or taking a piece of Blizzard with you into space—you’re welcome here.
+    <div class="quiz-container">
+        <div class="chosen-card">
+            <div id="image-name">Image Name</div>
+            <div class="content-container">
+                <img id="quiz-image" src="images/card-back.png">
+                <div class="quiz-question">
+                    <div id="question-title">quiz question</div>
+                    <form class="question-answers">
+                        <input class="answer" type="radio" id="answer1" name="answer1" value="Bike">
+                        <label id="label1" for="answer1">Answer 1</label><br>
+                        <input class="answer" type="radio" id="answer2" name="answer1" value="Bike">
+                        <label id="label2" for="answer2">Answer 2</label><br>
+                        <input class="answer" type="radio" id="answer3" name="answer1" value="Bike">
+                        <label id="label3" for="answer3">Answer 3</label><br>
+                        <input class="answer" type="radio" id="answer4" name="answer1" value="Bike">
+                        <label id="label4" for="answer4">Answer 4</label><br><br><br>
+                        <button type="button" onclick="checkAnswer()" id="submitBtn">Submit</button>
+                      </form>
+                </div>
+            </div>
+            <div class="generate">
+                <button type="button" onclick="generate()" id="generateBtn">generate</button>
+                <button type="button" onclick="test()" id="generateBtn">test</button>
+            </div>
+        </div>
+        
     </div>
+    
   </div>
   
 
@@ -48,6 +76,6 @@
       crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src='js/script.js'></script>
+  <script src='js/quiz.js'></script>
 </body>
 </html>
