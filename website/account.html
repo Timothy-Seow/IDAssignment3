@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ID Assignment 3</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/account.css" type="text/css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -33,13 +33,34 @@
         </div>
       </div>
   </nav>
-  <div class="main-content">
-    <div class="heading">
-      Blizzard Entertainment
-    </div>
-    <div class="about-us">
-      At Blizzard Entertainment, we pour our hearts and souls into everything we create. We embrace our core values every day so that we can continue creating epic entertainment experiences for all our players. It doesn’t matter who you are or where you’re located—if you’re a member of our evolving and vibrant community, working with us at one of our offices around the globe, or taking a piece of Blizzard with you into space—you’re welcome here.
-    </div>
+  <div id="main-content">
+    <form class="account-form">
+      <h1 class="account-header" id="account">Register</h1>
+      <div class="form-header">
+        <div class="tab-container"><a class="form-tabs" id="regTab" href="#" onclick="register()">Register</a></div>
+        <div class="tab-container"><a class="form-tabs" id="loginTab" href="#" onclick="login()">Login</a></div>
+      </div>
+
+      <p>
+          <label>Username</label>
+          <input class="textbox" id="newUsername" type="text" required>
+      </p>
+
+      <p>
+          <label>Password</label>
+          <input class="textbox" id="newPassword" type="password" required>
+      </p>
+      <p id="confirmpass-text">
+        
+          <label>Confirm Password</label>
+          <input class="textbox" id="newCPassword" type="password" required>
+        
+      </p>
+      <p>
+          <button type="button" onclick="registerUser()" id="regBtn">Register</button>
+      </p>
+
+  </form>
   </div>
   
 
@@ -48,6 +69,6 @@
       crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src='js/script.js'></script>
+  <script src='js/account.js'></script>
 </body>
 </html>

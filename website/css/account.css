@@ -1,0 +1,77 @@
+.account-form{
+    display: flex;
+    align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background: white;
+    width: 70%;
+	margin: 100px auto 0;
+	box-shadow: 0 0 1em #555;
+	border-radius: 10px;
+}
+
+.account-header{
+    width: 50%;
+    font-size: 35px;
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.account-form p{
+	margin: 10px auto;
+	width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.account-form button{
+	width: 100%;
+	margin-top: 10px;
+	padding: 15px 15px 15px;
+	font-size: 20px;
+	border-radius: 10px;
+	border: 2px solid #e5e5e5;
+	background-color: #222;
+	color: white;
+}
+
+.form-header {
+    width: 70%;
+    position: inherit;
+    display: flex;
+    border-bottom: 2px solid gray;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.form-tabs {
+   
+    text-decoration: none;
+    color: black;
+}
+
+.tab-container{
+    width: 15%;
+}
+
+#regTab{
+    position: absolute;
+    border-bottom: 2px solid purple;
+    color: purple;
+}
+
+#loginTab {
+    margin-left: 30px;
+}
