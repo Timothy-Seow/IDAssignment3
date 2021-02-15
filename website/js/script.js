@@ -1,37 +1,66 @@
-var cardList;
+var cardList = [];
 
-function getData() {
-    const url = 'https://api.hearthstonejson.com/v1/latest/enUS/cards.json';
-    fetch(url)
-    .then(res => res.json())
-    .then(function(data){
-        cardList = data;
-        displayCard();
-    })
-}
-
-function displayCard(){
-    $.each(cardList, function(index, value){
-        const cardimage = `https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${value.id}.png`
-        if (value.type != "HERO" || value.type != "HERO_POWER" || value.type != "ENCHANTMENT"){
-            $('.card-container').append(
-                $('<div/>')
-                .append(
-                    $('<img/>')
-                    .attr("src", cardimage)
-                )
-            )
+fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
+        "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
         }
-    })
-  
-    //console.log(cardList.length)
+})
+.then(response => response.json())
+.then(function (data){
+    let card = data.Basic;
+    console.log(card);
+    cardList = card;
+})
+.catch(err => {
+    console.error(err);
+});
 
-}
-getData();
-
-function test(x)
+var testing = [];
+function  test()
 {
-    x.forEach(card => {
-        console.log(card.name);
+    var count = 0;
+    console.log('test');
+    $.each(cardList, function (index, value){
+        count += 1;
+        
+        
+        fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${value.name}`, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
+            "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
+            }
+        })
+        .then(res => res.json())
+        .then(function (info){
+            console.log('success');
+            info.forEach(data => {
+                if(data.collectible == true)
+                {
+                    testing.push(data);
+                }
+            });
+             
+            
+            
+        })
+        .catch(err => {
+            console.error(err);
+            
+        });
+        
+    })
+    console.log(count);
+    
+}
+
+function test2()
+{
+    
+    testing.forEach(card => {
+        console.log(card);
     });
+    
 }
