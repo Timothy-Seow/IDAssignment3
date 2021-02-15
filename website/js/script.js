@@ -12,7 +12,16 @@ function getData() {
 
 function displayCard(){
     $.each(cardList, function(index, value){
-        //console.log(value.name);
+        const cardimage = `https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${value.id}.png`
+        if (value.type != "HERO" || value.type != "HERO_POWER" || value.type != "ENCHANTMENT"){
+            $('.card-container').append(
+                $('<div/>')
+                .append(
+                    $('<img/>')
+                    .attr("src", cardimage)
+                )
+            )
+        }
     })
   
     //console.log(cardList.length)
@@ -22,10 +31,7 @@ getData();
 
 function test(x)
 {
-
     x.forEach(card => {
         console.log(card.name);
     });
 }
-
-test(cardList);
