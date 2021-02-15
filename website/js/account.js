@@ -130,13 +130,11 @@ function register()
         "<label>Password</label>" +
         "<input class='textbox' id='newPassword' type='password' required>" +
     "</p>" +
-    "<p id='confirmpass-text'>" +
-      
+    "<p>" +
         "<label>Confirm Password</label>" +
         "<input class='textbox' id='newCPassword' type='password' required>" +
-      
     "</p>" +
-    "<p>" +
+    "<p class='btn-container'>" +
         "<button type='button' onclick='registerUser()' id='regBtn'>Register</button>" +
     "</p>");
     clicked = document.getElementById("regTab");
@@ -165,7 +163,7 @@ function login()
         "<label>Password</label>" +
         "<input class='textbox' id='newPassword' type='password' required>" +
     "</p>" +
-    "<p>" +
+    "<p class='btn-container'>" +
         "<button type='button' onclick='loginUser()' id='loginBtn'>Login</button>" +
     "</p>");
     clicked = document.getElementById("loginTab");
