@@ -66,14 +66,66 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
 .then(response => response.json())
 .then(function (back){
     $.each(back, function(index, value){
-        $('.cardback-container').append(
-            $('<div/>')
-            .append(
-                $('<img/>')
-                .addClass("indiv-cardback")
-                .attr("src", value.img)
-                
-            )
-        )
+        var element = "<b>Description</b><br>" + value.description + "<br><br>";
+        if("howToGet" in value){
+             element += "<b>How To Get:</b><br>" + value.howToGet;
+        }
+        if("img" in value){
+            $('#card-backs').append(
+                $('<div/>')
+                    .addClass("indiv-cardback")
+                    .append(
+                        $('<button/>')
+                            .addClass("cardback")
+                            .attr("data-bs-toggle", "modal")
+                            .attr("data-bs-target", ("#cardback" + index))
+                            .append(
+                                $('<img/>')
+                                    .addClass("card-back-image")
+                                    .attr("src", value.img)
+                                    .attr("alt", value.name),
+                                $('<div/>')
+                                    .addClass("card-back-body")
+                                    .append(
+                                        $('<h4/>')
+                                            .addClass("card-back-title")
+                                            .text(value.name)
+                                    )
+                            ),
+                        // To add Item's modal box which contain the Item's information
+                        $('<div/>')
+                            .addClass("modal fade")
+                            .attr("id", ("cardback" + index))
+                            .attr("tabindex", "-1")
+                            .attr("arialabelledby", "exampleModalLabel")
+                            .attr("aria-hidden", "true")
+                            .append(
+                                $('<div/>')
+                                    .addClass("modal-dialog modal-dialog-centered")
+                                    .append(
+                                        $('<div/>')
+                                            .addClass("modal-content")
+                                            .append(
+                                                $('<div/>')
+                                                    .addClass("modal-header")
+                                                    .append(
+                                                        $('<img/>')
+                                                            .attr("src", value.img)
+                                                            .attr("alt", value.name),
+                                                        $('<h5/>')
+                                                            .addClass("modal-title")
+                                                            .attr("id", "exampleModalLabel")
+                                                            .text(value.name)
+                                                    ),
+                                                $('<div/>')
+                                                    .addClass("modal-body")
+                                                    .append(element)
+                                            )
+                                    )
+                            )
+                    ));
+        }
+        
+        
     })
 })
