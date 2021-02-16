@@ -41,3 +41,11 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.cardback-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.indiv-cardback{
+    width: 256px;
+}

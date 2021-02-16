@@ -27,7 +27,6 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", {
 
 function getcardinfo(){
     $.each(cardList, function (index, value){
-        console.log(value)
         fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${value}`, {
         "method": "GET",
         "headers": {
@@ -56,3 +55,25 @@ function getcardinfo(){
         
     })
 }
+
+fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
+        "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
+        }
+})
+.then(response => response.json())
+.then(function (back){
+    $.each(back, function(index, value){
+        $('.cardback-container').append(
+            $('<div/>')
+            .append(
+                $('<img/>')
+                .addClass("indiv-cardback")
+                .attr("src", value.img)
+                
+            )
+        )
+    })
+})
