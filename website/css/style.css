@@ -41,12 +41,15 @@
     display: flex;
     flex-wrap: wrap;
 }
-.cardback-container{
+.indiv-card{
+    width: 256px;
+}
+.cardback-container, .card-container{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#card-backs{
+#card-backs, #cards{
     display: flex;
     width: 80%;
     flex-wrap: wrap;
@@ -54,14 +57,14 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.cardback{
+.cardback, .card{
     border:none;
     background-color: transparent;
 }
-.cardback:focus{
+.cardback:focus, .card:focus{
     outline: none;
 }
-.card-back-image{
+.card-back-image, .card-image{
     display: flex;
     width: 256px;
     margin-top: 1em;

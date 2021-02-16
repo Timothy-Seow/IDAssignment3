@@ -38,15 +38,52 @@ function getcardinfo(){
         .then(function (info){
             var cardinfo = info[info.length - 1]
             if ("img" in cardinfo && cardinfo.collectible == true){
-                $('.card-container').append(
+                $('#cards').append(
                     $('<div/>')
-                    .append(
-                        $('<img/>')
                         .addClass("indiv-card")
-                        .attr("src", cardinfo.img)
-                        
-                    )
-                )
+                        .append(
+                            $('<button/>')
+                                .addClass("card")
+                                .attr("data-bs-toggle", "modal")
+                                .attr("data-bs-target", ("#card" + index))
+                                .append(
+                                    $('<img/>')
+                                        .addClass("card-image")
+                                        .attr("src", cardinfo.img)
+                                        .attr("alt", cardinfo.name)
+                                ),
+                            // To add Item's modal box which contain the Item's information
+                            $('<div/>')
+                                .addClass("modal fade")
+                                .attr("id", ("card" + index))
+                                .attr("tabindex", "-1")
+                                .attr("arialabelledby", "exampleModalLabel")
+                                .attr("aria-hidden", "true")
+                                .append(
+                                    $('<div/>')
+                                        .addClass("modal-dialog modal-dialog-centered")
+                                        .append(
+                                            $('<div/>')
+                                                .addClass("modal-content")
+                                                .append(
+                                                    $('<div/>')
+                                                        .addClass("modal-header")
+                                                        .append(
+                                                            $('<img/>')
+                                                                .attr("src", cardinfo.img)
+                                                                .attr("alt", cardinfo.name),
+                                                            $('<h5/>')
+                                                                .addClass("modal-title")
+                                                                .attr("id", "exampleModalLabel")
+                                                                .text(cardinfo.name)
+                                                        ),
+                                                    $('<div/>')
+                                                        .addClass("modal-body")
+                                                        .append()
+                                                )
+                                        )
+                                )
+                        ));
             }
         })
         .catch(err => {
@@ -66,9 +103,9 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
 .then(response => response.json())
 .then(function (back){
     $.each(back, function(index, value){
-        var element = "<b>Description</b><br>" + value.description + "<br><br>";
+        var element = "<b>Description</b><br>" + value.description + "<br>";
         if("howToGet" in value){
-             element += "<b>How To Get:</b><br>" + value.howToGet;
+             element += "<br><b>How To Get:</b><br>" + value.howToGet;
         }
         if("img" in value){
             $('#card-backs').append(
