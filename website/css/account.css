@@ -1,3 +1,10 @@
+#account-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .account-form{
     display: flex;
     align-items: center;
@@ -32,7 +39,7 @@
     padding-bottom: 40px;
 }
 
-.account-form button{
+.account-form button, .accountBtn {
 	width: 100%;
 	margin-top: 10px;
 	padding: 15px 15px 15px;
@@ -70,4 +77,41 @@
 
 #loginTab {
     margin-left: 30px;
+}
+
+.loggedin{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-header{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    font-size: 40px;
+}
+
+.loginPrompt{
+    font-size: 40px;
+    width: 60%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid purple;
+    
+}
+
+.login-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
 }

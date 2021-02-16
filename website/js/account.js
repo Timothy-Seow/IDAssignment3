@@ -1,6 +1,4 @@
 var user = {};
-
-user['dawn'] = 'eclypse';
 function getAccounts()
 {
     var settings = {
@@ -27,6 +25,7 @@ function getAccounts()
 
 getAccounts()
 
+loggedin = false;
 function loginUser()
 {
     username = $("#newUsername").val();
@@ -35,8 +34,9 @@ function loginUser()
     if(username in user)
     {
         if(password === user[username])
-        {
-            alert("successfully logged in!");
+        {   
+            loggedin = true;
+            refreshContent(username);
         }
         else
         {
@@ -49,6 +49,7 @@ function loginUser()
     }
 
 }
+
 function registerUser()
 {
     username = $("#newUsername").val();
@@ -91,30 +92,70 @@ function registerUser()
                 user[username] = password;
 
                 $.ajax(settings).done(function(response) {
-                    console.log(response);
                     alert("Registration successfull!");
+                    loggedin = true;
+                    refreshContent(username);
                 })
                 
             }
             else
             {
-                alert('please ensure passwords are the same');
+                alert("Please make sure the passwords are the same!");
             }
         }
     }
     else
     {
-        alert("Please make sure to input all information")
+        alert("Please make sure to input all information!")
     }
+}
+
+function refreshContent(name)
+{
+    if(loggedin)
+    {
+        
+        $(".account-form").remove();
+        $("#account-content").append("<div class='loggedin'>" +
+        "<div class='loginPrompt'>Successfully Logged In!</div>" +
+        `<div class='login-header'>You are currently logged in as ${name}</div>` +
+        "<div class='login-content'>" +
+        "<div class='login-options'><button onclick='logOut()' class='accountBtn'>Log Out</button></div>" + 
+        "</div>" +
+        "</div>");
+    }
+    else
+    {
+        $(".loggedin").remove();
+        $("#account-content").append("<form class='account-form'>" +
+        "<h1 class='account-header' id='account'>Register</h1>" +
+        "<div class='form-header'>" + 
+          "<div class='tab-container'><a class='form-tabs' id='regTab' href='#' onclick='register()'>Register</a></div>" +
+          "<div class='tab-container'><a class='form-tabs' id='loginTab' href='#' onclick='login()'>Login</a></div>" +
+        "</div><p><label>Username</label>" +
+            "<input class='textbox' id='newUsername' type='text' required></p><p><label>Password</label>" +
+            "<input class='textbox' id='newPassword' type='password' required></p><p>" +
+            "<label>Confirm Password</label>" +
+            "<input class='textbox' id='newCPassword' type='password' required></p>" +
+        "<p class='btn-container'>" +
+            "<button type='button' onclick='registerUser()' id='regBtn'>Register</button></p>" +
+  "</form>");
+    }
+}
+
+function logOut()
+{
+    loggedin = false;
+    refreshContent();
 }
 
 var clicked;
 var previous;
 function register()
 {
-    var x = document.getElementById("main-content");
+    var x = document.getElementById("account-content");
     x.innerHTML = "";
-    $("#main-content").append("<form class='account-form'>" +
+    $("#account-content").append("<form class='account-form'>" +
     "<h1 class='account-header' id='account'>Register</h1>" +
     "<div class='form-header'>" +
       "<div class='tab-container'><a class='form-tabs' id='regTab' href='#' onclick='register()'>Register</a></div>" +
@@ -145,9 +186,9 @@ function register()
 function login()
 {
 
-    var x = document.getElementById("main-content");
+    var x = document.getElementById("account-content");
     x.innerHTML = "";
-    $("#main-content").append("<form class='account-form'>" +
+    $("#account-content").append("<form class='account-form'>" +
     "<h1 class='account-header' id='account'>Login</h1>" +
     "<div class='form-header'>" +
       "<div class='tab-container'><a class='form-tabs' id='regTab' href='#' onclick='register()'>Register</a></div>" +
