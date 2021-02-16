@@ -1,0 +1,48 @@
+.pack-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pack-header{
+    width: 50%;
+    font-size: 40px;
+    border-bottom: 2px solid purple;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-packs{
+    width: 50%;
+    text-align: justify;
+    display: flex;
+    margin-top: 20px;
+}
+
+.rates{
+    width: 100%;
+}
+
+#packs {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.generate-btn{
+    width: 30%;
+	margin-top: 30px;
+	padding: 15px 15px 15px;
+	font-size: 20px;
+	border-radius: 10px;
+	border: 2px solid #e5e5e5;
+	background-color: #222;
+	color: white;
+}
