@@ -1,29 +1,28 @@
 var cardList = [];
 
-fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", {
+function getclasscards(id){
+
+    fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${id}`, {
     "method": "GET",
     "headers": {
         "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
         "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
         }
-})
-.then(response => response.json())
-.then(function (data){
-    let set = data;
-    var count = 0;
-    $.each(set, function (key, obj) {
-        if (count < 4){
-            $.each(obj, function (index, value){
-                cardList.push(value.cardId);
-            })
-            count += 1;
-        }
     })
-})
-.then(() => getcardinfo())
-.catch(err => {
-    console.error(err);
-});
+    .then(response => response.json())
+    .then(function (data){
+        let set = data;
+        cardList = [];
+        $.each(set, function (key, obj) {
+            cardList.push(obj.cardId)
+        })
+    })
+    .then(() => getcardinfo())
+    .catch(err => {
+        console.error(err);
+    }); 
+}
+
 
 function getcardinfo(){
     $.each(cardList, function (index, value){
@@ -37,7 +36,7 @@ function getcardinfo(){
         .then(res => res.json())
         .then(function (info){
             var cardinfo = info[info.length - 1]
-            if ("img" in cardinfo && cardinfo.collectible == true){
+            if ("img" in cardinfo && cardinfo.collectible == true && cardinfo.type != "Hero"){
                 $('#cards').append(
                     $('<div/>')
                         .addClass("indiv-card")
@@ -52,7 +51,6 @@ function getcardinfo(){
                                         .attr("src", cardinfo.img)
                                         .attr("alt", cardinfo.name)
                                 ),
-                            // To add Item's modal box which contain the Item's information
                             $('<div/>')
                                 .addClass("modal fade")
                                 .attr("id", ("card" + index))
@@ -72,14 +70,13 @@ function getcardinfo(){
                                                             $('<img/>')
                                                                 .attr("src", cardinfo.img)
                                                                 .attr("alt", cardinfo.name),
-                                                            $('<h5/>')
-                                                                .addClass("modal-title")
+                                                            $('<div/>')
+                                                                .addClass("modal-title card-detail")
                                                                 .attr("id", "exampleModalLabel")
-                                                                .text(cardinfo.name)
-                                                        ),
-                                                    $('<div/>')
-                                                        .addClass("modal-body")
-                                                        .append()
+                                                                .append("<b><h4>{0}</h4></b><br>".format(cardinfo.name))
+                                                                .append("<i><p>{0}</p></i><br>".format(cardinfo.flavor))
+                                                                .append("<b><h5>{0}</h5></b>".format(cardinfo.text))
+                                                        )
                                                 )
                                         )
                                 )
@@ -103,7 +100,7 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
 .then(response => response.json())
 .then(function (back){
     $.each(back, function(index, value){
-        var element = "<b>Description</b><br>" + value.description + "<br>";
+        var element = "<b>Description:</b><br>" + value.description + "<br>";
         if("howToGet" in value){
              element += "<br><b>How To Get:</b><br>" + value.howToGet;
         }
@@ -124,12 +121,11 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                                 $('<div/>')
                                     .addClass("card-back-body")
                                     .append(
-                                        $('<h4/>')
+                                        $('<h5/>')
                                             .addClass("card-back-title")
                                             .text(value.name)
                                     )
                             ),
-                        // To add Item's modal box which contain the Item's information
                         $('<div/>')
                             .addClass("modal fade")
                             .attr("id", ("cardback" + index))
@@ -149,14 +145,12 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                                                         $('<img/>')
                                                             .attr("src", value.img)
                                                             .attr("alt", value.name),
-                                                        $('<h5/>')
+                                                        $('<div/>')
                                                             .addClass("modal-title")
                                                             .attr("id", "exampleModalLabel")
-                                                            .text(value.name)
-                                                    ),
-                                                $('<div/>')
-                                                    .addClass("modal-body")
-                                                    .append(element)
+                                                            .append("<b><h4>{0}</h4></b><br>".format(value.name))
+                                                            .append(element)
+                                                    )
                                             )
                                     )
                             )
@@ -166,3 +160,9 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
         
     })
 })
+
+// To Allow Text Formatting Function
+String.prototype.format = function () {
+    var args = arguments;
+    return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
+};

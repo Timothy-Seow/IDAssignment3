@@ -42,7 +42,7 @@
     flex-wrap: wrap;
 }
 .indiv-card{
-    width: 256px;
+    width: 240px;
 }
 .cardback-container, .card-container{
     display: flex;
@@ -53,7 +53,7 @@
     display: flex;
     width: 80%;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -66,18 +66,21 @@
 }
 .card-back-image, .card-image{
     display: flex;
-    width: 256px;
+    width: 240px;
     margin-top: 1em;
     align-content: center;
 }
+.card-detail{
+    margin-top:35px;
+}
 .modal-header img{
-    width: 256px;
+    width: 240px;
 }
 .modal-title{
     margin-left: 10px;
+    flex-wrap: wrap;
 }
 .modal-header{
     display: flex;
-    justify-content: unset;
-    flex-wrap: wrap;
+    align-items: flex-start;
 }
