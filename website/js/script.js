@@ -59,7 +59,7 @@ function getcardinfo(){
                             $('<button/>')
                                 .addClass("card")
                                 .attr("data-bs-toggle", "modal")
-                                .attr("data-bs-target", ("#card" + index))
+                                .attr("data-bs-target", ("#card" + cardinfo.dbfId))
                                 .append(
                                     $('<img/>')
                                         .addClass("card-image")
@@ -68,7 +68,7 @@ function getcardinfo(){
                                 ),
                             $('<div/>')
                                 .addClass("modal fade")
-                                .attr("id", ("card" + index))
+                                .attr("id", ("card" + cardinfo.dbfId))
                                 .attr("tabindex", "-1")
                                 .attr("arialabelledby", "exampleModalLabel")
                                 .attr("aria-hidden", "true")
