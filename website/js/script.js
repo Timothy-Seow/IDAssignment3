@@ -14,7 +14,9 @@ function getclasscards(id){
         let set = data;
         cardList = [];
         $.each(set, function (key, obj) {
-            cardList.push(obj.cardId)
+            if("collectible" in obj){
+                cardList.push(obj.cardId)
+            }
         })
     })
     .then(() => getcardinfo())
@@ -36,13 +38,20 @@ function getcardinfo(){
         .then(res => res.json())
         .then(function (info){
             var cardinfo = info[info.length - 1]
-            if ("img" in cardinfo && cardinfo.collectible == true && cardinfo.type != "Hero"){
-                var spacing = cardinfo.text.replace(/_/g, " ");
-                var hashtag = spacing.replace(/#/g, "");
-                var backslash = hashtag.replace(/\\n/g, " ");
-                var xbox = backslash.replace(/\[x\]/g, "")
-                var newtext = xbox.replace(/\$/g, "");
+            if ("img" in cardinfo && cardinfo.type != "Hero"){
+                if ("text" in cardinfo){
+                    var spacing = cardinfo.text.replace(/_/g, " ");
+                    var hashtag = spacing.replace(/#/g, "");
+                    var backslash = hashtag.replace(/\\n/g, " ");
+                    var xbox = backslash.replace(/\[x\]/g, "")
+                    var newtext = xbox.replace(/\$/g, "");
+                    
+                }
+                else{
+                    var newtext = "";
+                }
                 var newflavor = cardinfo.flavor.replace(/\\n/g, " ")
+
                 $('#cards').append(
                     $('<div/>')
                         .addClass("indiv-card")
