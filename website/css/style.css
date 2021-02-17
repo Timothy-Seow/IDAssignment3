@@ -71,7 +71,7 @@
     align-content: center;
 }
 .card-detail{
-    margin-top:35px;
+    margin-top: 15px;
 }
 .modal-header img{
     width: 240px;
@@ -83,4 +83,8 @@
 .modal-header{
     display: flex;
     align-items: flex-start;
+    justify-content: unset;
+}
+.card-image{
+    margin-top: -20px;
 }

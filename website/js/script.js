@@ -37,6 +37,12 @@ function getcardinfo(){
         .then(function (info){
             var cardinfo = info[info.length - 1]
             if ("img" in cardinfo && cardinfo.collectible == true && cardinfo.type != "Hero"){
+                var spacing = cardinfo.text.replace(/_/g, " ");
+                var hashtag = spacing.replace(/#/g, "");
+                var backslash = hashtag.replace(/\\n/g, " ");
+                var xbox = backslash.replace(/\[x\]/g, "")
+                var newtext = xbox.replace(/\$/g, "");
+                var newflavor = cardinfo.flavor.replace(/\\n/g, " ")
                 $('#cards').append(
                     $('<div/>')
                         .addClass("indiv-card")
@@ -59,7 +65,7 @@ function getcardinfo(){
                                 .attr("aria-hidden", "true")
                                 .append(
                                     $('<div/>')
-                                        .addClass("modal-dialog modal-dialog-centered")
+                                        .addClass("modal-dialog modal-dialog-centered modal-lg")
                                         .append(
                                             $('<div/>')
                                                 .addClass("modal-content")
@@ -68,14 +74,24 @@ function getcardinfo(){
                                                         .addClass("modal-header")
                                                         .append(
                                                             $('<img/>')
+                                                                .addClass("card-image")
                                                                 .attr("src", cardinfo.img)
                                                                 .attr("alt", cardinfo.name),
                                                             $('<div/>')
                                                                 .addClass("modal-title card-detail")
                                                                 .attr("id", "exampleModalLabel")
-                                                                .append("<b><h4>{0}</h4></b><br>".format(cardinfo.name))
-                                                                .append("<i><p>{0}</p></i><br>".format(cardinfo.flavor))
-                                                                .append("<b><h5>{0}</h5></b>".format(cardinfo.text))
+                                                                .append("<b><h4>{0}</h4></b>".format(cardinfo.name))
+                                                                .append("<i><p>{0}</p></i>".format(newflavor))
+                                                                .append("<b><h5>{0}</h5></b>".format(newtext))
+                                                                .append(
+                                                                    $('<ul/>')
+                                                                    .append("<li>Type: {0}</li>".format(cardinfo.type))
+                                                                    .append("<li>Rarity: {0}</li>".format(cardinfo.rarity))
+                                                                    .append("<li>Set: {0}</li>".format(cardinfo.cardSet))
+                                                                    .append("<li>Class: {0}</li>".format(cardinfo.playerClass))
+                                                                    .append("<li>Artist: {0}</li>".format(cardinfo.artist))
+                                                                    .append("<li>Collectible</li>")
+                                                                )
                                                         )
                                                 )
                                         )
