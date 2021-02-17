@@ -114,3 +114,38 @@
     font-size: 30px;
     border-bottom: 2px solid purple;
 }
+
+.answer-option{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media screen and (max-width: 1400px) {
+    .content-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #quiz-image {
+        width: 70%;
+    }
+
+    .quiz-question{
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        margin-top: 30px;
+    }
+
+    .question-answers{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+}

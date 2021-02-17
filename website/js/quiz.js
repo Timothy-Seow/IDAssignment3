@@ -58,14 +58,14 @@ function getcardinfo() {
         "<div class='quiz-question'>" +
         "<div id='question-title'>quiz question</div>" +
         "<form class='question-answers'>" +
-        "<input class='answer' type='radio' id='answer1' name='quiz' value='1'>" +
-        "<label id='label1' for='answer1'>Answer 1</label><br>" +
-        "<input class='answer' type='radio' id='answer2' name='quiz' value='2'>" +
-        "<label id='label2' for='answer2'>Answer 2</label><br>" +
-        "<input class='answer' type='radio' id='answer3' name='quiz' value='3'>" +
-        "<label id='label3' for='answer3'>Answer 3</label><br>" +
-        "<input class='answer' type='radio' id='answer4' name='quiz' value='4'>" +
-        "<label id='label4' for='answer4'>Answer 4</label><br><br><br>" +
+        "<div class='answer-option'><input class='answer' type='radio' id='answer1' name='quiz' value='1'>" +
+        "<label id='label1' for='answer1'>Answer 1</label></div><br>" +
+        "<div class='answer-option'><input class='answer' type='radio' id='answer2' name='quiz' value='2'>" +
+        "<label id='label2' for='answer2'>Answer 2</label></div><br>" +
+        "<div class='answer-option'><input class='answer' type='radio' id='answer3' name='quiz' value='3'>" +
+        "<label id='label3' for='answer3'>Answer 3</label></div><br>" +
+        "<div class='answer-option'><input class='answer' type='radio' id='answer4' name='quiz' value='4'>" +
+        "<label id='label4' for='answer4'>Answer 4</label></div><br><br><br>" +
         "<button type='button' onclick='startGame()' id='submitBtn'>Start</button>" +
         "</form>" +
         "</div>" +

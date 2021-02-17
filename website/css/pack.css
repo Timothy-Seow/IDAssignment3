@@ -46,3 +46,11 @@
 	background-color: #222;
 	color: white;
 }
+
+@media screen and (max-width: 1600px)
+{
+    .about-packs
+    {
+        flex-direction: column-reverse;
+    }
+}
