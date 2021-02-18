@@ -1,7 +1,7 @@
 var cardList = [];
 
 function getclasscards(id){
-
+    document.getElementById("display-card").innerHTML = ("Displaying " + id +" Cards");
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${id}`, {
     "method": "GET",
     "headers": {
@@ -27,6 +27,8 @@ function getclasscards(id){
 
 
 function getCardInfo(cards){
+    var changecards = document.getElementById('cards');
+    changecards.innerHTML = "";
     $.each(cards, function (index, value){
         fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${value}`, {
         "method": "GET",
@@ -45,13 +47,11 @@ function getCardInfo(cards){
                     var backslash = hashtag.replace(/\\n/g, " ");
                     var xbox = backslash.replace(/\[x\]/g, "")
                     var newtext = xbox.replace(/\$/g, "");
-                    
                 }
                 else{
                     var newtext = "";
                 }
                 var newflavor = cardinfo.flavor.replace(/\\n/g, " ")
-
                 $('#cards').append(
                     $('<div/>')
                         .addClass("indiv-card")
@@ -105,29 +105,28 @@ function getCardInfo(cards){
                                                 )
                                         )
                                 )
-                        ));
+                        ))
             }
         })
         .catch(err => {
             console.error(err);
         });
-        
     })
-}
 
+}
 fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
-        "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
-        }
+"method": "GET",
+"headers": {
+    "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
+    "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
+    }
 })
 .then(response => response.json())
 .then(function (back){
     $.each(back, function(index, value){
         var element = "<b>Description:</b><br>" + value.description + "<br>";
         if("howToGet" in value){
-             element += "<br><b>How To Get:</b><br>" + value.howToGet;
+            element += "<br><b>How To Get:</b><br>" + value.howToGet;
         }
         if("img" in value){
             $('#card-backs').append(
@@ -137,7 +136,7 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                         $('<button/>')
                             .addClass("cardback")
                             .attr("data-bs-toggle", "modal")
-                            .attr("data-bs-target", ("#cardback" + index))
+                            .attr("data-bs-target", ("#cardback" + value.cardBackId))
                             .append(
                                 $('<img/>')
                                     .addClass("card-back-image")
@@ -153,7 +152,7 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                             ),
                         $('<div/>')
                             .addClass("modal fade")
-                            .attr("id", ("cardback" + index))
+                            .attr("id", ("cardback" + value.cardBackId))
                             .attr("tabindex", "-1")
                             .attr("arialabelledby", "exampleModalLabel")
                             .attr("aria-hidden", "true")
@@ -180,26 +179,32 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                                     )
                             )
                     ));
-        }
-        
-        
+            }
     })
-})
-var searchname = document.getElementById("cardsearch")
-searchname.addEventListener("keydown", function (e) {
-    if (e.key === 'Enter'){
-        var cardname = $("#cardsearch").val();
-        if (cardname.includes(".") || cardname.startsWith(" ")){
-            console.log(cardname)
-        }
-        else{
-            searchCard(cardname);
-        }
-    }
 });
 
+function searchInput(){
+    var searchname = document.getElementById("cardsearch")
+    searchname.onkeypress = function (e) {
+        if (e.key === 'Enter'){
+            searchCard();
+            searchname.blur();
+        }
+    };
+}
+
+function searchCard(){
+    var cardname = $("#cardsearch").val();
+    if (cardname.includes(".") || cardname.startsWith(" ")){
+    }
+    else{
+        searchCardInfo(cardname);
+        document.getElementById("display-card").innerHTML = ("Displaying results for " + "\"" + cardname + "\"");
+    }
+}
+
 var searchedCardList = [];
-function searchCard(name){
+function searchCardInfo(name){
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/${name}`, {
     "method": "GET",
     "headers": {
@@ -222,22 +227,8 @@ function searchCard(name){
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// To make card page load Neutral Cards upon entering the page
+$("#Neutral").click();
 
 // To Allow Text Formatting Function
 String.prototype.format = function () {
