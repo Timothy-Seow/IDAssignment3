@@ -30,27 +30,6 @@ function generate() {
 
 function getcardinfo() {
     var cardCount = 0;
-    $(".quiz-loading").remove();
-    $("#quiz-container").append("<div class='chosen-card'>" +
-        "<div id='image-name'>Card Name</div>" +
-        "<div class='content-container'>" +
-        "<img id='quiz-image' src='images/card-back.png'>" +
-        "<div class='quiz-question'>" +
-        "<div id='question-title'>quiz question</div>" +
-        "<form class='question-answers'>" +
-        "<input class='answer' type='radio' id='answer1' name='quiz' value='1'>" +
-        "<label id='label1' for='answer1'>Answer 1</label><br>" +
-        "<input class='answer' type='radio' id='answer2' name='quiz' value='2'>" +
-        "<label id='label2' for='answer2'>Answer 2</label><br>" +
-        "<input class='answer' type='radio' id='answer3' name='quiz' value='3'>" +
-        "<label id='label3' for='answer3'>Answer 3</label><br>" +
-        "<input class='answer' type='radio' id='answer4' name='quiz' value='4'>" +
-        "<label id='label4' for='answer4'>Answer 4</label><br><br><br>" +
-        "<button type='button' onclick='startGame()' id='submitBtn'>Start</button>" +
-        "</form>" +
-        "</div>" +
-        "</div>" +
-        "</div>");
     $.each(cardList, function (index, value) {
         fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${value}`, {
             "method": "GET",
@@ -74,10 +53,14 @@ function getcardinfo() {
     })
 }
 
+var temp = [];
+var packArray = [];
+
 function generatePack()
 {
+    temp = [];
     var packArray = [];
-    if(cards.length === 418)
+    if(cards.length >= 100)
     {
         var pack = document.getElementById("packs");
         pack.innerHTML = "";
@@ -97,13 +80,13 @@ function generatePack()
             }
         }
         var count = 0
+        
         $.each(packArray, function(index, obj) {
+            
+            $("#packs").append(`<img onclick='revealCard(this.id)' class='pack-img' id='${count}' src='images/card-back.png'>`);
+            temp.push(obj.img)
             count ++;
-            $("#packs").append(`<img class="pack-img"id='${obj.img}' src='${obj.img}'>`)
-
         })
-
-
     }
     else
     {
@@ -111,9 +94,9 @@ function generatePack()
     }
 }
 
+function revealCard(source)
+{
+    $(`#${source}`).attr('src', temp[source])
+}
 
-$(".pack-img").click(function(){
-    // Change src attribute of image
-    $(this).attr("src", this.id);
-    alert(this.id);
-});    
+

@@ -47,6 +47,11 @@
 	color: white;
 }
 
+.pack-img{
+    width: 250px;
+    height: auto;
+}
+
 @media screen and (max-width: 1600px)
 {
     .about-packs
