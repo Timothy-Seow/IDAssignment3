@@ -3,21 +3,17 @@
     font-size: 40px;
     margin-right: 100px;
 }
-
 .container-fluid{
     width: 70%;
     display: flex;
     flex-direction: space-between;
 }
-
-.main-content
-{
+.main-content{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
 .heading{
     text-align: center;
     margin-top: 50px;
@@ -29,14 +25,12 @@
     border-bottom: 1px solid black;
     margin-bottom: 20px;
 }
-
 .about-us{
     width: 60%;
     padding: 20px;
     text-align: justify;
     font-size: 20px;
 }
-
 .card-container{
     display: flex;
     flex-wrap: wrap;
@@ -46,6 +40,7 @@
 }
 .cardback-container, .card-container{
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
 }
@@ -87,4 +82,33 @@
 }
 .card-image{
     margin-top: -20px;
+}
+.search-bar{
+    display: flex;
+    margin: 50px 0px 30px 0px;
+    width: 100%;
+    justify-content: center;
+}
+#cardsearch{
+    width: 50%;
+    border: none;
+    text-decoration: none;
+    border-bottom-style: groove;
+    border-bottom-color: #000000;
+}
+#cardsearch:focus{
+    outline:none;
+}
+.class-button-container{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.class-button-container button{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: solid 2px black;
+    min-width: 15%;
 }
