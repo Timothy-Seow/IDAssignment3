@@ -4,8 +4,8 @@
 ID Assignment 3 - Hearthstone Wiki
 
 ## Contributors
-Dave Tan Kun Yi
-Timothy Seow Yi Heng
+Dave Tan Kun Yi - S10208011H
+Timothy Seow Yi Heng - S10204778K
 
 ## Overview
 The website that we have made is based on this game called Hearthstone. It is an online card game that allows players to build their own deck of 30 cards and battle it out against other players online.
