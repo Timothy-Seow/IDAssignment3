@@ -128,6 +128,9 @@ Search for card
     The image slider and the characters from the javascript did not load.
 
 ## Credits
+- [Blizzard] (https://www.blizzard.com/en-us/company/about/)
+- [Hearthstone](https://en.wikipedia.org/wiki/Hearthstone)
+
 
 ### Content
 The information for each card and cardbacks in this site were obtained from this API

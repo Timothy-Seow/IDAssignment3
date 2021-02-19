@@ -1,3 +1,5 @@
+// jshint esversion: 6
+// jshint esversion: 8
 var standardList = [];
 var wildList = [];
 function getSets(){
@@ -14,7 +16,7 @@ function getSets(){
             if (key == "standard"){ // To get Standard Sets
                 $.each(obj, function (index, value){
                     standardList.push(value);
-                })
+                });
             }
             else if (key == "wild"){ // To get Wild Sets
                 $.each(obj, function (index, value){
@@ -22,15 +24,15 @@ function getSets(){
                         if (wildList.includes(value) || standardList.includes(value)){ // Remove duplicates in Wild Set that is already in Standard Set
                         }
                         else{
-                            wildList.push(value)
+                            wildList.push(value);
                         }
                     }
-                })
+                });
             }
             
-        })
+        });
     })
-    .then(() => addSetButtons(standardList, wildList)) // Execute the function, passing in 2 lists containing all standard and wild sets
+    .then(() => addSetButtons(standardList, wildList)); // Execute the function, passing in 2 lists containing all standard and wild sets
 }
 
 function addSetButtons(standard, wild){
@@ -40,35 +42,35 @@ function addSetButtons(standard, wild){
         .text("Standard Sets"),
         $('<div/>')
         .addClass("standard-buttons")
-    )
+    );
     $('.wild-button-container').append( // Add a Wild Set button container
         $('<h4/>')
         .addClass("wild-header")
         .text("Wild Sets"),
         $('<div/>')
         .addClass("wild-buttons")
-    )
+    );
     $.each(standard, function (index, value){ // Add button for each Standard Set
         $('.standard-buttons').append(
             $('<button/>')
                 .attr("id", value)
                 .text(value)
                 .attr("onclick", "getSetCards(this.id)") // Add onclick funtion
-        )
-    })
+        );
+    });
     $.each(wild, function (index, value){ // Add button for each Wild Set
         $('.wild-buttons').append(
             $('<button/>')
                 .attr("id", value)
                 .text(value)
                 .attr("onclick", "getSetCards(this.id)") // Add onclick function
-        )
-    })
+        );
+    });
 }
 var setCardList = [];
 function getSetCards(setid){
     $("#player").remove(); // Remove lottie animation
-    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>") // Add lottie animation
+    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>"); // Add lottie animation
     document.getElementById("display-card").innerHTML = ("Loading " + setid +" Cards");
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${setid}`, { // Fetch relevant cards based on Set
     "method": "GET",
@@ -82,11 +84,11 @@ function getSetCards(setid){
         setCardList = [];
         $.each(cards, function (index, value){
             if("collectible" in value){ // If the card is collectible then push to list
-                setCardList.push(value.cardId)
+                setCardList.push(value.cardId);
             }
-        })
+        });
     })
-    .then(() => getCardInfo(setCardList, setid)) // Execute the function
+    .then(() => getCardInfo(setCardList, setid)); // Execute the function
     
 }
 
@@ -94,7 +96,7 @@ var cardList = [];
 function getClassCards(classid){
     document.getElementById("display-card").innerHTML = ("Loading " + classid +" Cards"); // Display loading message
     $("#player").remove(); // Remove lottie animation
-    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>") // Add lottie animation
+    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>"); // Add lottie animation
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${classid}`, { // Fetch relevant cards based on Class
     "method": "GET",
     "headers": {
@@ -107,9 +109,9 @@ function getClassCards(classid){
         cardList = [];
         $.each(data, function (key, obj) {
             if ("collectible" in obj){ // If card is collectible then push to list
-                cardList.push(obj.cardId)
+                cardList.push(obj.cardId);
             }
-        })
+        });
     })
     .then(() => getCardInfo(cardList, classid)) // Execute the function, passing in the list and the class ID
     .catch(err => {
@@ -143,10 +145,12 @@ function getCardInfo(cards, displayname){
             else {
                 document.getElementById("display-card").innerHTML = (count + " Cards Found For " + "\"" + displayname + "\""); // To show how many cards are found
             }
-            var cardinfo = info[0]
+          var cardtext = "";
+            var cardinfo = info[0];
+          	var cardflavor = "";
             if ("img" in cardinfo && cardinfo.type != "Hero"){ // To check if Card have image and its not a "Hero" card
                 if ("text" in cardinfo){ // To check if there is a desription for the Card
-                    var cardtext = cardinfo.text; // Create Card description string
+                    cardtext = cardinfo.text; // Create Card description string
                     // To check if text have any of these characters and replace them accordingly
                     if (cardtext.includes("_")){
                         cardtext = cardtext.replace(/_/g, " ");
@@ -158,19 +162,19 @@ function getCardInfo(cards, displayname){
                         cardtext = cardtext.replace(/\\n/g, " ");
                     }
                     if (cardtext.includes("[x]")){
-                        cardtext = cardtext.replace(/\[x\]/g, "")
+                        cardtext = cardtext.replace(/\[x\]/g, "");
                     }
                     if (cardtext.includes("$")){
                         cardtext = cardtext.replace(/\$/g, "");
                     }
                 }
                 else {
-                    var cardtext = "";
+                    cardtext = "";
                 }
                 if ("flavor" in cardinfo){
-                    var cardflavor = cardinfo.flavor
+                    cardflavor = cardinfo.flavor;
                     if (cardflavor.includes("\\n")){
-                        cardflavor = cardflavor.replace(/\\n/g, " ")
+                        cardflavor = cardflavor.replace(/\\n/g, " ");
                     }
                 }
                 $('#cards').append(
@@ -226,13 +230,13 @@ function getCardInfo(cards, displayname){
                                                 )
                                         )
                                 )
-                        ))
+                        ));
             }
         })
         .catch(err => {
             console.error(err);
         });
-    })
+    });
 
 }
 fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", { // Fetch all CardBacks information
@@ -301,16 +305,16 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", { // Fetch all 
                             )
                     ));
             }
-    })
+    });
 });
 
 function searchInput(){
-    var searchname = document.getElementById("cardsearch") // To get the input field
+    var searchname = document.getElementById("cardsearch"); // To get the input field
     searchname.onkeypress = function (e) {
         if (e.key === 'Enter'){ // To check if user pressed enter
             document.getElementById("cards").innerHTML = ""; // Clear all previous cards
             $("#player").remove(); // Remove lottie animation
-            $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>") // Add lottie animation
+            $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>"); // Add lottie animation
             searchCard(); // Execute the function
             searchname.blur(); // To unfocus from the search bar
         }
@@ -341,9 +345,9 @@ function searchCardInfo(name){
         searchedCardList = [];
         $.each(data, function (index, value){
             if("collectible" in value){
-                searchedCardList.push(value.cardId) // Push the searched card IDs into a list
+                searchedCardList.push(value.cardId); // Push the searched card IDs into a list
             }
-        })
+        });
     })
     .then(() => getCardInfo(searchedCardList,name)) // Execute the function
     .catch(err => {
@@ -357,7 +361,7 @@ function searchCardInfo(name){
 topbutton = document.getElementById("topbtn"); // Get the button
 
 window.onscroll = function() { // When the user scrolls down from the top of the page, execute the function
-    scrollFunction()
+    scrollFunction();
 };
 
 function scrollFunction() {

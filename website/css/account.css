@@ -3,9 +3,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 800px;
 }
-
-.account-form{
+.account-form{ /*css for accounts form*/
     display: flex;
     align-items: center;
 	flex-direction: column;
@@ -16,7 +16,6 @@
 	box-shadow: 0 0 1em #555;
 	border-radius: 10px;
 }
-
 .account-header{
     width: 50%;
     font-size: 35px;
@@ -24,8 +23,6 @@
     display: flex;
     justify-content: center;
 }
-
-
 .account-form p{
 	margin: 10px auto;
 	width: 70%;
@@ -34,11 +31,9 @@
     justify-content: center;
     
 }
-
 .btn-container {
     padding-bottom: 40px;
 }
-
 .account-form button, .accountBtn {
 	width: 100%;
 	margin-top: 10px;
@@ -49,7 +44,6 @@
 	background-color: #222;
 	color: white;
 }
-
 .form-header {
     width: 70%;
     position: inherit;
@@ -58,27 +52,21 @@
     justify-content: flex-start;
     margin-bottom: 20px;
 }
-
 .form-tabs {
-   
     text-decoration: none;
     color: black;
 }
-
 .tab-container{
     width: 15%;
 }
-
 #regTab{
     position: absolute;
     border-bottom: 2px solid purple;
     color: purple;
 }
-
 #loginTab {
     margin-left: 30px;
 }
-
 .loggedin{
     width: 100%;
     display: flex;
@@ -86,7 +74,6 @@
     align-items: center;
     flex-direction: column;
 }
-
 .login-header{
     width: 60%;
     display: flex;
@@ -95,7 +82,6 @@
     margin-top: 50px;
     font-size: 40px;
 }
-
 .loginPrompt{
     font-size: 40px;
     width: 60%;
@@ -104,14 +90,11 @@
     justify-content: center;
     align-items: center;
     border-bottom: 2px solid purple;
-    
 }
-
 .login-content{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-
 }

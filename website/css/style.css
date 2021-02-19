@@ -1,19 +1,24 @@
 /* CSS For Home Page*/
-.logo{
-    font-weight: 600;
-    font-size: 40px;
+
+.navbar-brand{
+    font-size: 30px;
     margin-right: 100px;
+}
+
+.innerLogo{
+    font-weight: 700;
 }
 .container-fluid{
     width: 70%;
     display: flex;
-    flex-direction: space-between;
+    justify-content: space-between;
 }
 .main-content{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 800px;
 }
 .heading{
     text-align: center;
@@ -23,7 +28,7 @@
     width: 60%;
     font-size: 40px;
     padding: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid purple;
     margin-bottom: 20px;
 }
 .about-us{
@@ -31,6 +36,7 @@
     padding: 20px;
     text-align: justify;
     font-size: 20px;
+
 }
 /* CSS For Cards, CardBacks and Modal Popup*/
 .indiv-card{
@@ -43,7 +49,13 @@
     margin-top: 50px;
     flex-direction: column;
     align-items: center;
+    min-height: 350px;
 }
+
+.cardback-container{
+    min-height: 600px;
+}
+
 #card-backs, #cards{
     display: flex;
     width: 80%;
@@ -70,6 +82,19 @@
 .modal-content{
     display: flex;
 }
+
+@media only screen and (max-width: 550px)
+{
+    .modal-header{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-header img{
+        align-self: center;
+    }
+}
+
 .modal-header img{
     width: 240px;
 }
@@ -176,6 +201,7 @@
 /* CSS For Card Page Headers*/
 #display-card{
     margin-top: 20px;
+    font-size: 30px;
 }
 .standard-header, .wild-header, .class-header{
     text-align: center;
@@ -199,4 +225,16 @@
   
   #topbtn:hover {
     background-color: purple;
+  }
+
+
+  .footer{
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black;
+      margin-top: 50px;
+      color: white;
   }

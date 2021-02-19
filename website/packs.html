@@ -15,7 +15,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><span class="logo">Blizzard</span></a>
+            <a class="navbar-brand" href="index.html">Wiki<span class="innerLogo">Stone</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -47,18 +47,18 @@
     </nav>
 
 
-    <div class="pack-content">
+    <div class="pack-content"><!--container for packs-->
         <div class="pack-header">Pack Opening</div>
         <div class="about-packs">
             <div class="rates">
                 
-                <ul>
+                <ul><!-- drop rates of rarity -->
                     <li>Rare: 1 out of 5 cards</li>
                     <li>Epic: 1 out of 20 cards</li>
                     <li>Legendary: 1 out of 100 cards</li>
                 </ul>
             </div>
-            <p>
+            <p><!-- about pack openig simulator -->
                 Here you can test your luck with your pack opening simulator! This pack simulator will display 5 cards
                 chosen at random.
                 For each of the 5 cards a random rarity and card will be chosen! Afterwards, click on each card to find out what you got!
@@ -67,10 +67,12 @@
         <button class="generate-btn" onclick="generatePack()">Open Pack</button>
         <div id="packs">
             
-        </div>
-        <div id="lottie"><p><h3>Please wait while we load the packs</h3></p><lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player></div>
+        </div><!-- loading lottie-->
+        <div id="lottie"><h3>Please wait while we load the packs</h3><lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player></div>
     </div>
-
+    <div class="footer">
+        Copyright @2021 All Rights Reserved
+      </div>
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

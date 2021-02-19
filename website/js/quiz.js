@@ -1,26 +1,27 @@
-
+// jshint esversion: 6
+// jshint esversion: 8
 cardList = [];
 cards = [];
 
 var answer = 0;
 var score = 0;
 
-function startGame() {
+function startGame() {/*function to start game */
     
-    if (100 <= cards.length) {
+    if (100 <= cards.length) {/*checking if there are more than 100 cards before starting the game*/
         questionRandomizer();
         $("#submitBtn").attr("onclick", "checkAnswer()");
         $("#submitBtn").text("Submit");
     }
-    else
+    else/*alert to tell user that game is still loading*/
     {
-        alert("please wait for the quiz to load!")
+        alert("please wait for the quiz to load!");
         console.log(cards.length);
     }
 }
 
 generate();
-function generate() {
+function generate() {/*retrieve card data from api*/
     fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", {
         "method": "GET",
         "headers": {
@@ -33,13 +34,13 @@ function generate() {
             console.log(data);
             var count = 0;
             $.each(data, function (key, obj) {
-                if (count < 4) {
+                if (count < 4) {/*limits cards to 4 expansions due to fetch request limit*/
                     $.each(obj, function (index, value) {
-                        cardList.push(value.cardId);
-                    })
+                        cardList.push(value.cardId);/*appends card id into list */
+                    });
                     count += 1;
                 }
-            })
+            });
         })
         .then(() => getcardinfo())
         .catch(err => {
@@ -51,10 +52,10 @@ function getcardinfo() {
     var cardCount = 0;
 
     $(".quiz-loading").remove();
-    $("#quiz-container").append("<div class='chosen-card'>" +
+    $("#quiz-container").append("<div class='chosen-card'>" +/*appends quiz for user to interact with*/
         "<div id='image-name'>Card Name</div>" +
         "<div class='content-container'>" +
-        "<img id='quiz-image' src='images/card-back.png'>" +
+        "<img id='quiz-image' src='images/card-back.png' alt='cardback' >" +
         "<div class='quiz-question'>" +
         "<div id='question-title'>quiz question</div>" +
         "<form class='question-answers'>" +
@@ -72,7 +73,7 @@ function getcardinfo() {
         "</div>" +
         "</div>");
 
-    $.each(cardList, function (index, value) {
+    $.each(cardList, function (index, value) {/*goes through each card id in the name to retrieve specific card data*/
 
         fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${value}`, {
             "method": "GET",
@@ -83,7 +84,7 @@ function getcardinfo() {
         })
             .then(res => res.json())
             .then(function (info) {
-                var cardinfo = info[info.length - 1]
+                var cardinfo = info[info.length - 1];
                 if ("img" in cardinfo && cardinfo.collectible == true) {
                     cards.push(cardinfo);
                     console.log('success');
@@ -95,10 +96,10 @@ function getcardinfo() {
             });
 
 
-    })
+    });
 }
 
-function questionRandomizer() {
+function questionRandomizer() {/*randomizes questions chosen*/
 
 
     var cardNumber = Math.floor(Math.random() * (cards.length));
@@ -112,24 +113,24 @@ function questionRandomizer() {
 
 
     if (questionNumber === 1) {
-        $("#question-title").text("What class does this card belong to?")
+        $("#question-title").text("What class does this card belong to?");
         newarray = getClass(card.playerClass);
         answer = randomizer(newarray, card.playerClass);
     }
     else if (questionNumber === 2) {
-        $("#question-title").text("What is the rarity of this card?")
+        $("#question-title").text("What is the rarity of this card?");
         newarray = getRarity(card.rarity);
         answer = randomizer(newarray, card.rarity);
     }
     else if (questionNumber === 3) {
-        $("#question-title").text("How much does it cost to play this card?")
+        $("#question-title").text("How much does it cost to play this card?");
         newarray = getCost(card.cost);
         answer = randomizer(newarray, card.cost);
     }
 
 }
 
-function getCost(x) {
+function getCost(x) {/*gets dummy answers from other cards with a different value*/
     var newArray = [x];
     var cardNumber;
     var newcard;
@@ -150,7 +151,7 @@ function getCost(x) {
     return newArray;
 }
 
-function getRarity(x) {
+function getRarity(x) {/*gets dummy answers from other cards with a different value*/
     var newArray = [x];
     var cardNumber;
     var newcard;
@@ -170,7 +171,7 @@ function getRarity(x) {
     return newArray;
 }
 
-function getClass(x) {
+function getClass(x) {/*gets dummy answers from other cards with a different value*/
     var newArray = [x];
     var cardNumber;
     var newcard;
@@ -191,7 +192,7 @@ function getClass(x) {
 }
 
 
-function randomizer(list, answer) {
+function randomizer(list, answer) {/*randomizes the order of which  the answers are placed*/
     for (let i = list.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [list[i], list[j]] = [list[j], list[i]];
@@ -201,14 +202,14 @@ function randomizer(list, answer) {
         $(`#label${x + 1}`).text(list[x]);
     }
 
-    var index = list.indexOf(answer) + 1
+    var index = list.indexOf(answer) + 1;
     console.log(list);
     console.log(index);
     return index;
 }
 
 
-function checkAnswer() {
+function checkAnswer() {/*function to check if answer selected is correct*/
     
     var check = document.querySelector('input[name = "quiz"]:checked').value;
     if (check != null) {
@@ -226,7 +227,7 @@ function checkAnswer() {
     
 }
 
-function nextQuestion()
+function nextQuestion()/*function to load next question*/
 {
         $("#submitBtn").attr("onclick", "startGame()");
         $("#submitBtn").html("Next Question");
