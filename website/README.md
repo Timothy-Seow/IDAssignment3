@@ -33,9 +33,6 @@ When implementing an accounts feature, we were thinking of using it to store inf
 
 Loading cards from the api takes some time. Because of that, we decided to implement lottie animations while waiting for the cards to load. This shows the user that the cards are being loaded. 
 
-
-
-
 **User Stories**
 1. As a player, I want to find out more about a card that I have encountered during a game of mine so i can devise a strategy to play against that card.
 
@@ -49,8 +46,6 @@ Loading cards from the api takes some time. Because of that, we decided to imple
 
 ## Features
 
-
-
 ### Existing Features
 This website offers various features for the user to use. Some of  these features incluse a filtering system where the user is able to chose specifically which class or set a card comes from. Furthurmore, they can even search for card names with the implemented search bar, making finding specific cards much easier. 
 
@@ -60,7 +55,6 @@ We implemented a pack opening simulator to allow users to test their luck. This 
 
 Other features we have implemented are the accounts feature using restDB. This feature allows users to register an account or log into one if they already registered. 
 
-
 ### Collectible Card Information
 
 Currently the card page only shows information on the collectible cards based on the current patch. Each card, when clicked, will display more details such as its class, card set, etc, of the card as a modal popup.
@@ -68,8 +62,6 @@ Currently the card page only shows information on the collectible cards based on
 ### CardBack Information
 
 The cardbacks page on this site displays every cardback currently in the game. When clicking on the cardbacks, a popup will appear displaying information about the cardback such as the name, description and how to obtain.
-
-
 
 ### Features Left to Implement
 
@@ -80,8 +72,6 @@ The cardbacks page on this site displays every cardback currently in the game. W
 * A scoring system could be added to allow players to know  their score based on how well they did. This can even be tied to their accounts
 
 * Currenty the pack opening simulator only allows 1 type of pack. In the future, more packs could be added to allow users the option of choosing which expansion they would like to open packs from.
-
-
 
 ## Technologies Used:
 * [HTML](https://html.spec.whatwg.org/multipage/)
@@ -139,7 +129,6 @@ Search for card
 
 ## Credits
 
-
 ### Content
 The information for each card and cardbacks in this site were obtained from this API
 * [Cards/CardBacks](https://rapidapi.com/omgvamp/api/hearthstone?endpoint=5525c4a8e4b01d538895c588)
@@ -151,6 +140,8 @@ Database used to store accounts information such as username and password
 ### Media
 Image of card back used for quiz and pack opening
 - [HearthstoneGamepedia](https://hearthstone.gamepedia.com/Card_back)
+Image of the Search Icon
+- [Search Icon](https://image.flaticon.com/icons/png/512/49/49116.png)
 
 
 ### Acknowledgements
