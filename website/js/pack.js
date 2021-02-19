@@ -62,6 +62,7 @@ function generatePack()
     var packArray = [];
     if(cards.length >= 100)
     {
+        $("#lottie").remove();
         var pack = document.getElementById("packs");
         pack.innerHTML = "";
         var cardNumber;

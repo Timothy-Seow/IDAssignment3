@@ -67,6 +67,8 @@ function addSetButtons(standard, wild){
 }
 var setCardList = [];
 function getSetCards(setid){
+    $("#player").remove();
+    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>")
     document.getElementById("display-card").innerHTML = ("Loading " + setid +" Cards");
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${setid}`, {
     "method": "GET",
@@ -92,6 +94,8 @@ function getSetCards(setid){
 var cardList = [];
 function getClassCards(classid){
     document.getElementById("display-card").innerHTML = ("Loading " + classid +" Cards");
+    $("#player").remove();
+    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>")
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${classid}`, {
     "method": "GET",
     "headers": {
@@ -117,6 +121,7 @@ function getClassCards(classid){
 
 
 function getCardInfo(cards, displayname){
+    
     var changecards = document.getElementById('cards');
     changecards.innerHTML = "";
     var count = 0;
@@ -133,6 +138,7 @@ function getCardInfo(cards, displayname){
             count += 1;
             console.log(count)
             if (count == Math.round((cards.length / 3))){
+                document.getElementById("lottie-player").style.display = "none";
                 document.getElementById("cards").style.display = "flex";
             }
             else if (count < Math.round((cards.length / 3))){
@@ -318,6 +324,8 @@ function searchCard(){
     else{
         searchCardInfo(cardname);
         document.getElementById("display-card").innerHTML = ("Loading Results For " + "\"" + cardname + "\"");
+        $("#player").remove();
+    $("#lottie-player").append("<lottie-player id='player' src='https://assets3.lottiefiles.com/packages/lf20_jkanw7bv.json'  background='transparent'  speed='1'  style='width: 300px; height: 300px;'  loop autoplay></lottie-player>")
     }
 }
 
@@ -342,6 +350,8 @@ function searchCardInfo(name){
     .then(() => getCardInfo(searchedCardList,name))
     .catch(err => {
         console.error(err);
+        $("#player").remove();
+        document.getElementById("display-card").innerHTML = ("No Results For " + "\"" + name + "\"");
     });
 }
 
