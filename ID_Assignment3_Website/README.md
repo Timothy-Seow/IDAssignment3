@@ -35,6 +35,7 @@ Loading cards from the api takes some time. Because of that, we decided to imple
 
 * [Wireframe](https://xd.adobe.com/view/8a969602-c640-43f3-8cf9-2ee809a04d6d-dfc5/)
 * [Pitch](https://drive.google.com/file/d/1_flIc3gm7GQsYBFMCPcszgwb99zQMTB_/view?usp=sharing)
+* [GithubLink](https://timothyseow.github.io/IDAssignment3/)
 
 **User Stories**
 1. As a player, I want to find out more about a card that I have encountered during a game of mine so i can devise a strategy to play against that card.
