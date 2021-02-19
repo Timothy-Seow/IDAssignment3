@@ -40,9 +40,9 @@ Loading cards from the api takes some time. Because of that, we decided to imple
 
 3. As a non-player, I want to know whether Hearthstone has nice designs of their cards and card backs that pique my interest in playing the game
 
-4. I wanted to test my knowledge about the cards in hearthstone. 
+4. As a player, I wanted to test my knowledge about the cards in hearthstone. 
 
-5. I was unsure if i should open a pack in game or not. Having a pack opening simulator let me gauge and predict the chances of getting a rare card in game.
+5. As a player, I was unsure if i should open a pack in game or not. Having a pack opening simulator let me gauge and predict the chances of getting a rare card in game.
 
 ## Features
 
@@ -86,14 +86,16 @@ The cardbacks page on this site displays every cardback currently in the game. W
     * The project uses Bootstrap to customize and style content
 * [RapidAPI](https://rapidapi.com/)
     * The project uses RapidAPI to find a suitable API for data
+* [RestDB](https://restdb.io/)
+    * The project uses RestDB to store accounts information such as username and password
 
 ## Testing
 
-Search for card
-1. Go to cards page
-    1. type in card name
-    2. click search button
-    3. Only cards with the same name in the search field will be displayed
+1. Search for card
+    1. Go to cards page
+    2. type in card name
+    3. click search button
+    4. Only cards with the same name in the search field will be displayed
 
 2. Card information
     1. Go to cards page
@@ -131,21 +133,15 @@ Search for card
 - [Blizzard] (https://www.blizzard.com/en-us/company/about/)
 - [Hearthstone](https://en.wikipedia.org/wiki/Hearthstone)
 
-
 ### Content
 The information for each card and cardbacks in this site were obtained from this API
 * [Cards/CardBacks](https://rapidapi.com/omgvamp/api/hearthstone?endpoint=5525c4a8e4b01d538895c588)
-
-Database used to store accounts information such as username and password
-* [Database](https://restdb.io/)
-
 
 ### Media
 Image of card back used for quiz and pack opening
 - [HearthstoneGamepedia](https://hearthstone.gamepedia.com/Card_back)
 Image of the Search Icon
 - [Search Icon](https://image.flaticon.com/icons/png/512/49/49116.png)
-
 
 ### Acknowledgements
 * We received inspiration for this project from Hearthstone
