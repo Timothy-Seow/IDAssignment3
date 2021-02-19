@@ -7,7 +7,7 @@ var score = 0;
 
 function startGame() {
     
-    if (418 === cards.length) {
+    if (100 <= cards.length) {
         questionRandomizer();
         $("#submitBtn").attr("onclick", "checkAnswer()");
         $("#submitBtn").text("Submit");
@@ -213,7 +213,6 @@ function checkAnswer() {
     var check = document.querySelector('input[name = "quiz"]:checked').value;
     if (check != null) {
         if (check == answer) {
-            alert(check)
             alert('Congratulations! You got the correct answer!');
         }
         else {

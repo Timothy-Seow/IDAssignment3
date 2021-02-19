@@ -31,16 +31,15 @@
     text-align: justify;
     font-size: 20px;
 }
-.card-container{
-    display: flex;
-    flex-wrap: wrap;
-}
+
 .indiv-card{
     width: 240px;
 }
 .cardback-container, .card-container{
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    margin-top: 50px;
     flex-direction: column;
     align-items: center;
 }
@@ -138,4 +137,8 @@
 }
 .all-button-container button:hover{
     background-color: red;
+}
+
+#display-card{
+    margin-top: 20px;
 }
