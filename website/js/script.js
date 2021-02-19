@@ -1,8 +1,84 @@
-var cardList = [];
+var standardList = [];
+var wildList = [];
+function getSets(){
+    fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/info`, {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
+        "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
+        }
+    })
+    .then(res => res.json())
+    .then(function (sets){
+        $.each(sets, function (key, obj){
+            if (key == "standard"){
+                $.each(obj, function (index, value){
+                    standardList.push(value);
+                })
+            }
+            else if (key == "wild"){
+                $.each(obj, function (index, value){
+                    if (value != "Basic" && value != "Classic" && value != "Promo"){
+                        if (wildList.includes(value) || standardList.includes(value)){
+                        }
+                        else{
+                            wildList.push(value)
+                        }
+                    }
+                })
+            }
+            
+        })
+    })
+    .then(() => addSetButtons(standardList, wildList))
+}
 
-function getclasscards(id){
-    document.getElementById("display-card").innerHTML = ("Displaying " + id +" Cards");
-    fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${id}`, {
+function addSetButtons(standard, wild){
+    $.each(standard, function (index, value){
+        $('.standard-buttons').append(
+            $('<button/>')
+                .attr("id", value)
+                .text(value)
+                .attr("onclick", "getSetCards(this.id)")
+        )
+    })
+    $.each(wild, function (index, value){
+        $('.wild-buttons').append(
+            $('<button/>')
+                .attr("id", value)
+                .text(value)
+                .attr("onclick", "getSetCards(this.id)")
+        )
+    })
+}
+var setCardList = [];
+function getSetCards(setid){
+    document.getElementById("display-card").innerHTML = ("Displaying " + setid +" Cards");
+    fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${setid}`, {
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
+        "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com"
+        }
+    })
+    .then(response => response.json())
+    .then(function (cards){
+        setCardList = [];
+        $.each(cards, function (index, value){
+            if("collectible" in value){
+                setCardList.push(value.cardId)
+            }
+        })
+        setCardList.sort();
+    })
+    .then(() => getCardInfo(setCardList))
+    
+}
+
+var cardList = [];
+function getClassCards(classid){
+    document.getElementById("display-card").innerHTML = ("Displaying " + classid +" Cards");
+    fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${classid}`, {
     "method": "GET",
     "headers": {
         "x-rapidapi-key": "6656a0b8afmsha230c04208cbd77p13668djsn8507de8fe1ec",
@@ -11,13 +87,13 @@ function getclasscards(id){
     })
     .then(response => response.json())
     .then(function (data){
-        let set = data;
         cardList = [];
-        $.each(set, function (key, obj) {
+        $.each(data, function (key, obj) {
             if("collectible" in obj){
                 cardList.push(obj.cardId)
             }
         })
+        cardList.sort()
     })
     .then(() => getCardInfo(cardList))
     .catch(err => {
@@ -39,19 +115,38 @@ function getCardInfo(cards){
         })
         .then(res => res.json())
         .then(function (info){
-            var cardinfo = info[info.length - 1]
+            console.log(info)
+            console.log("hey")
+            var cardinfo = info[0]
             if ("img" in cardinfo && cardinfo.type != "Hero"){
                 if ("text" in cardinfo){
-                    var spacing = cardinfo.text.replace(/_/g, " ");
-                    var hashtag = spacing.replace(/#/g, "");
-                    var backslash = hashtag.replace(/\\n/g, " ");
-                    var xbox = backslash.replace(/\[x\]/g, "")
-                    var newtext = xbox.replace(/\$/g, "");
+                    var cardtext = cardinfo.text;
+                    if (cardtext.includes("_")){
+                        cardtext = cardtext.replace(/_/g, " ");
+                    }
+                    if (cardtext.includes("#")){
+                        cardtext = cardtext.replace(/#/g, "");
+                    }
+                    if (cardtext.includes("\n")){
+                        cardtext = cardtext.replace(/\\n/g, " ");
+                    }
+                    if (cardtext.includes("[x]")){
+                        cardtext = cardtext.replace(/\[x\]/g, "")
+                    }
+                    if (cardtext.includes("$")){
+                        cardtext = cardtext.replace(/\$/g, "");
+                    }
                 }
                 else{
-                    var newtext = "";
+                    var cardtext = "";
                 }
-                var newflavor = cardinfo.flavor.replace(/\\n/g, " ")
+                if ("flavor" in cardinfo){
+                    var cardflavor = cardinfo.flavor
+                    if (cardflavor.includes("\n")){
+                        cardflavor = cardflavor.replace(/\\n/g, " ")
+                    }
+                }
+                
                 $('#cards').append(
                     $('<div/>')
                         .addClass("indiv-card")
@@ -90,8 +185,8 @@ function getCardInfo(cards){
                                                                 .addClass("modal-title card-detail")
                                                                 .attr("id", "exampleModalLabel")
                                                                 .append("<b><h4>{0}</h4></b>".format(cardinfo.name))
-                                                                .append("<i><p>{0}</p></i>".format(newflavor))
-                                                                .append("<b><h5>{0}</h5></b>".format(newtext))
+                                                                .append("<i><p>{0}</p></i>".format(cardflavor))
+                                                                .append("<b><h5>{0}</h5></b>".format(cardtext))
                                                                 .append(
                                                                     $('<ul/>')
                                                                     .append("<li>Type: {0}</li>".format(cardinfo.type))
@@ -199,7 +294,7 @@ function searchCard(){
     }
     else{
         searchCardInfo(cardname);
-        document.getElementById("display-card").innerHTML = ("Displaying results for " + "\"" + cardname + "\"");
+        document.getElementById("display-card").innerHTML = ("Displaying Results For " + "\"" + cardname + "\"");
     }
 }
 
@@ -227,11 +322,11 @@ function searchCardInfo(name){
     });
 }
 
-// To make card page load Neutral Cards upon entering the page
-$("#Neutral").click();
 
 // To Allow Text Formatting Function
 String.prototype.format = function () {
     var args = arguments;
     return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
 };
+
+getSets();

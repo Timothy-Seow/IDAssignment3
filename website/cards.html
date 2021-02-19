@@ -40,7 +40,7 @@
       </div>
   </nav>
 
-  <div class="card-container">
+  <div class="card-header">
     <div>
       <h1>Cards</h3>
     </div>
@@ -50,19 +50,41 @@
         <img id="search-icon" src="https://image.flaticon.com/icons/png/512/49/49116.png">
       </button>
     </div>
-    <div class="class-button-container">
-      <button id="Neutral" onclick="getclasscards(this.id)">Neutral</button>
-      <button id="Druid" onclick="getclasscards(this.id)">Druid</button>
-      <button id="Demon-hunter" onclick="getclasscards(this.id)">Demon Hunter</button>
-      <button id="Hunter" onclick="getclasscards(this.id)">Hunter</button>
-      <button id="Mage" onclick="getclasscards(this.id)">Mage</button>
-      <button id="Paladin" onclick="getclasscards(this.id)">Paladin</button>
-      <button id="Priest" onclick="getclasscards(this.id)">Priest</button>
-      <button id="Rogue" onclick="getclasscards(this.id)">Rogue</button>
-      <button id="Shaman" onclick="getclasscards(this.id)">Shaman</button>
-      <button id="Warlock" onclick="getclasscards(this.id)">Warlock</button>
-      <button id="Warrior" onclick="getclasscards(this.id)">Warrior</button>
+    <div class="all-button-container">
+      <div class="class-button-container">
+        <div class="class-header">
+          <h4>Classes</h4>
+        </div>
+        <div class="class-buttons">
+        <button id="Neutral" onclick="getClassCards(this.id)">Neutral</button>
+        <button id="Druid" onclick="getClassCards(this.id)">Druid</button>
+        <button id="Demon-Hunter" onclick="getClassCards(this.id)">Demon Hunter</button>
+        <button id="Hunter" onclick="getClassCards(this.id)">Hunter</button>
+        <button id="Mage" onclick="getClassCards(this.id)">Mage</button>
+        <button id="Paladin" onclick="getClassCards(this.id)">Paladin</button>
+        <button id="Priest" onclick="getClassCards(this.id)">Priest</button>
+        <button id="Rogue" onclick="getClassCards(this.id)">Rogue</button>
+        <button id="Shaman" onclick="getClassCards(this.id)">Shaman</button>
+        <button id="Warlock" onclick="getClassCards(this.id)">Warlock</button>
+        <button id="Warrior" onclick="getClassCards(this.id)">Warrior</button>
+        </div>
+      </div>
+        <div class="standard-button-container">
+          <div class="standard-header">
+            <h4>Standard Sets</h4>
+          </div>
+          <div class="standard-buttons"></div>
+        </div>
+        <div class="wild-button-container">
+          <div class="wild-header">
+            <h4>Wild Sets</h4>
+          </div>
+          <div class="wild-buttons"></div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="card-container">
     <div>
       <h3 id="display-card"></h3>
     </div>

@@ -108,19 +108,34 @@
 #cardsearch:focus{
     outline:none;
 }
-.class-button-container, .cardback-button-container{
+.card-header{
     display: flex;
-    width: 40%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+}
+.all-button-container{
+    display: flex;
+    justify-content: center;
+}
+.class-button-container, .standard-button-container, .wild-button-container{
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-.class-button-container button, .cardback-button-container button{
+.class-buttons, .standard-buttons, .wild-buttons{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.class-buttons button, .standard-buttons button, .wild-buttons button{
     margin-right: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: solid 2px black;
-    min-width: 15%;
 }
-.class-button-container button:hover{
+.all-button-container button:hover{
     background-color: red;
 }
