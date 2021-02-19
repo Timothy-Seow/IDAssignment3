@@ -34,6 +34,20 @@ function getSets(){
 }
 
 function addSetButtons(standard, wild){
+    $('.standard-button-container').append(
+        $('<h4/>')
+        .addClass("standard-header")
+        .text("Standard Sets"),
+        $('<div/>')
+        .addClass("standard-buttons")
+    )
+    $('.wild-button-container').append(
+        $('<h4/>')
+        .addClass("wild-header")
+        .text("Wild Sets"),
+        $('<div/>')
+        .addClass("wild-buttons")
+    )
     $.each(standard, function (index, value){
         $('.standard-buttons').append(
             $('<button/>')
@@ -262,13 +276,13 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                             .attr("aria-hidden", "true")
                             .append(
                                 $('<div/>')
-                                    .addClass("modal-dialog modal-dialog-centered")
+                                    .addClass("modal-dialog modal-dialog-centered modal-lg")
                                     .append(
                                         $('<div/>')
-                                            .addClass("modal-content")
+                                            .addClass("modal-content cardbmc")
                                             .append(
                                                 $('<div/>')
-                                                    .addClass("modal-header")
+                                                    .addClass("modal-header cardbmh")
                                                     .append(
                                                         $('<img/>')
                                                             .attr("src", value.img)

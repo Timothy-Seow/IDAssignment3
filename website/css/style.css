@@ -67,18 +67,22 @@
 .card-detail{
     margin-top: 15px;
 }
+.modal-content{
+    display: flex;
+}
 .modal-header img{
     width: 240px;
 }
 .modal-title{
     margin-left: 10px;
-    flex-wrap: wrap;
 }
 .modal-header{
     display: flex;
     align-items: flex-start;
     justify-content: unset;
-    flex-wrap: wrap;
+}
+.cardbmh{
+    justify-content: space-around;
 }
 .card-image{
     margin-top: -20px;
@@ -108,7 +112,7 @@
 #cardsearch:focus{
     outline:none;
 }
-.card-header{
+.card-header, .cardback-header{
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -126,10 +130,20 @@
     margin-top: 30px;
     padding-top: 10px;
 }
-.card-about h3{
+.card-about h3, .cardback-about h3{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+.cardback-about{
+    display:flex;
+    align-items: center;
+    width: 70%;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-top: 50px;
+    padding-top: 10px;
 }
 .all-button-container{
     display: flex;
@@ -156,4 +170,7 @@
 }
 #display-card{
     margin-top: 20px;
+}
+.standard-header, .wild-header, .class-header{
+    text-align: center;
 }
