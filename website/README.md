@@ -16,8 +16,22 @@ While players are able to find informatio about various cards, they will also be
 
 Players can also try their luck with our pack opening simulator. This pack opening simulator generates 5 random cards for the player to open. This allows players to feel out their luck for their day and may help them decide if they would like to open packs in the actual game.
 
-## Design Process
+Players can also register and account or sign into an existing one.
 
+## Design Process
+The goal of this website is to allow players to look for information easily. For this reason, we chose to split up our site into different sections. When players are looking for cards, they will go to the cards page. If they are looking for other information, they can easily navigate to each section using the nav bar.
+
+For the cards page, we decided that we wanted to implement a filtering system as there are too many cards in this game for  the user to scroll through and look for. The filtering system helps in shortening the time it takes a user to find a specific cards as well as allows the user to filter cards based on  categories like classes and sets. We chose to filter based on classes and sets as we feel it is the most important when looking for information. We also implemented a search bar for users to search via the card name. This makes it much easier for users to find specific cards. When clicking on a card, a popup will appear showing the user additional information about the card.
+
+For our card backs page, we chose to keep it simple and display the cards in rows. We chose to do this as users will be able to see many different cards in one page. This allows them to much more easily find the cardback they are looking for. When clicking on the cardbacks, the user can also find out more information on the cardback such as where its from and how to obtain it.
+
+To make our site more interactive we implemented our quiz page. We wanted it to be easily understandable, which is why we made it very simple. Only showing the card image, questions and options. This makes it so that an in depth guide on how to play the quiz is not needed.
+
+We decided to implement a pack opening function as many players like ourselves love opening packs. Unfortunately, opening packs in game can be costly and unrewarding at times. Because of  that, a pack opening simulator helps players scratch that pack opening itch as well as provide them with a vague idea of the chances of getting a rare card in game.
+
+When implementing an accounts feature, we were thinking of using it to store information such as favourited cards, quiz scores and possible deck building features. However, we are still not at that level to implement that. Instead we chose to do a simple register, log in and log out feature for now. We used restdb to store our information 
+
+Loading cards from the api takes some time. Because of that, we decided to implement lottie animations while waiting for the cards to load. This shows the user that the cards are being loaded. 
 
 
 
@@ -44,14 +58,16 @@ Our other features include a quiz where players can test their game knowledge. T
 
 We implemented a pack opening simulator to allow users to test their luck. This might help those that have the itch to open packs but do not wish to spend their hard earned points in game. The pack simulator also helps them decide if they want to open a pack based on their luck on that day.
 
-Other features we have implemented are the accounts feature. This feature allows users to register an account or log into one if they already registered. 
+Other features we have implemented are the accounts feature using restDB. This feature allows users to register an account or log into one if they already registered. 
 
 
 ### Collectible Card Information
 
 Currently the card page only shows information on the collectible cards based on the current patch. Each card, when clicked, will display more details such as its class, card set, etc, of the card as a modal popup.
 
-### CardBack Inforamtion
+### CardBack Information
+
+The cardbacks page on this site displays every cardback currently in the game. When clicking on the cardbacks, a popup will appear displaying information about the cardback such as the name, description and how to obtain.
 
 
 
@@ -121,16 +137,15 @@ Search for card
     1. Some functions on internet explorer was not able to work.
     The image slider and the characters from the javascript did not load.
 
-
-
-
-
 ## Credits
 
 
 ### Content
 The information for each card and cardbacks in this site were obtained from this API
 * [Cards/CardBacks](https://rapidapi.com/omgvamp/api/hearthstone?endpoint=5525c4a8e4b01d538895c588)
+
+Database used to store accounts information such as username and password
+* [Database](https://restdb.io/)
 
 
 ### Media
