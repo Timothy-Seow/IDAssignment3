@@ -53,7 +53,7 @@ function addSetButtons(standard, wild){
 }
 var setCardList = [];
 function getSetCards(setid){
-    document.getElementById("display-card").innerHTML = ("Displaying " + setid +" Cards");
+    document.getElementById("display-card").innerHTML = ("Loading " + setid +" Cards");
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${setid}`, {
     "method": "GET",
     "headers": {
@@ -71,13 +71,13 @@ function getSetCards(setid){
         })
         setCardList.sort();
     })
-    .then(() => getCardInfo(setCardList))
+    .then(() => getCardInfo(setCardList, setid))
     
 }
 
 var cardList = [];
 function getClassCards(classid){
-    document.getElementById("display-card").innerHTML = ("Displaying " + classid +" Cards");
+    document.getElementById("display-card").innerHTML = ("Loading " + classid +" Cards");
     fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/${classid}`, {
     "method": "GET",
     "headers": {
@@ -95,16 +95,17 @@ function getClassCards(classid){
         })
         cardList.sort()
     })
-    .then(() => getCardInfo(cardList))
+    .then(() => getCardInfo(cardList, classid))
     .catch(err => {
         console.error(err);
     }); 
 }
 
 
-function getCardInfo(cards){
+function getCardInfo(cards, displayname){
     var changecards = document.getElementById('cards');
     changecards.innerHTML = "";
+    var count = 0;
     $.each(cards, function (index, value){
         fetch(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${value}`, {
         "method": "GET",
@@ -115,8 +116,17 @@ function getCardInfo(cards){
         })
         .then(res => res.json())
         .then(function (info){
-            console.log(info)
-            console.log("hey")
+            count += 1;
+            console.log(count)
+            if (count == Math.round((cards.length / 3))){
+                document.getElementById("cards").style.display = "flex";
+            }
+            else if (count < Math.round((cards.length / 3))){
+                document.getElementById("cards").style.display = "none";
+            }
+            else{
+                document.getElementById("display-card").innerHTML = (count + " Cards Found For " + "\"" + displayname + "\"");
+            }
             var cardinfo = info[0]
             if ("img" in cardinfo && cardinfo.type != "Hero"){
                 if ("text" in cardinfo){
@@ -127,7 +137,7 @@ function getCardInfo(cards){
                     if (cardtext.includes("#")){
                         cardtext = cardtext.replace(/#/g, "");
                     }
-                    if (cardtext.includes("\n")){
+                    if (cardtext.includes("\\n")){
                         cardtext = cardtext.replace(/\\n/g, " ");
                     }
                     if (cardtext.includes("[x]")){
@@ -142,11 +152,10 @@ function getCardInfo(cards){
                 }
                 if ("flavor" in cardinfo){
                     var cardflavor = cardinfo.flavor
-                    if (cardflavor.includes("\n")){
+                    if (cardflavor.includes("\\n")){
                         cardflavor = cardflavor.replace(/\\n/g, " ")
                     }
                 }
-                
                 $('#cards').append(
                     $('<div/>')
                         .addClass("indiv-card")
@@ -294,7 +303,7 @@ function searchCard(){
     }
     else{
         searchCardInfo(cardname);
-        document.getElementById("display-card").innerHTML = ("Displaying Results For " + "\"" + cardname + "\"");
+        document.getElementById("display-card").innerHTML = ("Loading Results For " + "\"" + cardname + "\"");
     }
 }
 
@@ -316,7 +325,7 @@ function searchCardInfo(name){
             }
         })
     })
-    .then(() => getCardInfo(searchedCardList))
+    .then(() => getCardInfo(searchedCardList,name))
     .catch(err => {
         console.error(err);
     });

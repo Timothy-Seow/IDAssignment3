@@ -78,6 +78,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: unset;
+    flex-wrap: wrap;
 }
 .card-image{
     margin-top: -20px;
@@ -115,6 +116,21 @@
     border: none;
     background-color: transparent;
 }
+.card-about{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 70%;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+.card-about h3{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .all-button-container{
     display: flex;
     justify-content: center;
@@ -138,7 +154,6 @@
 .all-button-container button:hover{
     background-color: red;
 }
-
 #display-card{
     margin-top: 20px;
 }
