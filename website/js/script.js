@@ -279,10 +279,10 @@ fetch("https://omgvamp-hearthstone-v1.p.rapidapi.com/cardbacks", {
                                     .addClass("modal-dialog modal-dialog-centered modal-lg")
                                     .append(
                                         $('<div/>')
-                                            .addClass("modal-content cardbmc")
+                                            .addClass("modal-content")
                                             .append(
                                                 $('<div/>')
-                                                    .addClass("modal-header cardbmh")
+                                                    .addClass("modal-header")
                                                     .append(
                                                         $('<img/>')
                                                             .attr("src", value.img)

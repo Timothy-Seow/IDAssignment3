@@ -81,9 +81,6 @@
     align-items: flex-start;
     justify-content: unset;
 }
-.cardbmh{
-    justify-content: space-around;
-}
 .card-image{
     margin-top: -20px;
 }
